@@ -1,14 +1,3 @@
-
-# Moved
-
-https://gitlab.com/epicsoft-networks/ci
-
-
-
-
-
-
-
 # Smarthost
 
 A tool collection to run in the CI based on Alpine Linux
