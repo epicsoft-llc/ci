@@ -25,4 +25,4 @@ Latest:
     - docker push $CI_REGISTRY_IMAGE:latest
     - docker push $DOCKER_REGISTRY:latest
   only:
-    - master
+    - main
