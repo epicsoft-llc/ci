@@ -1,0 +1,28 @@
+stages:
+  - build
+
+image: docker:latest
+
+services:
+  - docker:dind
+
+variables:
+  DOCKER_REGISTRY: "epicsoft/ci"
+
+before_script:
+  - docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_TOKEN
+  - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+
+after_script:
+  - docker logout
+  - docker logout $CI_REGISTRY
+
+Latest:
+  stage: build
+  script:
+    - docker build --pull --no-cache -t $CI_REGISTRY_IMAGE:latest . --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
+    - docker tag $CI_REGISTRY_IMAGE:latest $DOCKER_REGISTRY:latest
+    - docker push $CI_REGISTRY_IMAGE:latest
+    - docker push $DOCKER_REGISTRY:latest
+  only:
+    - master
