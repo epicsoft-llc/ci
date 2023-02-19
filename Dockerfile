@@ -25,6 +25,8 @@ RUN apk --no-cache add lftp \
                        openssh-client-default \
                        sshpass \
                        tzdata \
+                       mysql-client \
+                       mariadb-client \
                        ca-certificates \
  && update-ca-certificates \
  && rm -rf /var/cache/apk/*

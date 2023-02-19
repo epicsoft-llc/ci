@@ -23,6 +23,8 @@ If you need special versions, please feel free to contact me or create a fork.
 - openssh-client-default
 - sshpass
 - tzdata
+- mysql-client
+- mariadb-client
 
 ## Project-License
 
