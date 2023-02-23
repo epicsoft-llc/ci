@@ -25,6 +25,7 @@ If you need special versions, please feel free to contact me or create a fork.
 - tzdata
 - mysql-client
 - mariadb-client
+- git
 
 ## Project-License
 

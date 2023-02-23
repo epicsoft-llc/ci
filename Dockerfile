@@ -27,6 +27,7 @@ RUN apk --no-cache add lftp \
                        tzdata \
                        mysql-client \
                        mariadb-client \
+                       git \
                        ca-certificates \
  && update-ca-certificates \
  && rm -rf /var/cache/apk/*
