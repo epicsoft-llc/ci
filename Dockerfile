@@ -29,6 +29,8 @@ RUN apk --no-cache add lftp \
                        mariadb-client \
                        git \
                        curl \
+                       jq \
+                       helm \
                        ca-certificates \
  && update-ca-certificates \
  && rm -rf /var/cache/apk/*

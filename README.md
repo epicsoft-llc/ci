@@ -27,6 +27,8 @@ If you need special versions, please feel free to contact me or create a fork.
 - mariadb-client
 - git
 - curl
+- jq
+- helm
 
 ## Project-License
 
