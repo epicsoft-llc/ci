@@ -32,5 +32,13 @@ RUN apk --no-cache add lftp \
                        jq \
                        helm \
                        ca-certificates \
+                       outils-sha256 \
  && update-ca-certificates \
  && rm -rf /var/cache/apk/*
+
+#### kubectl - see https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
+RUN curl -s -o /tmp/kubectl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" \
+ && curl -s -o /tmp/kubectl.sha256 -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256" \
+ && echo "$(cat /tmp/kubectl.sha256)  /tmp/kubectl" | sha256sum -c \
+ && chmod +x /tmp/kubectl \
+ && mv /tmp/kubectl /usr/local/bin/kubectl
