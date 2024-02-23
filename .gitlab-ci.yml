@@ -1,5 +1,6 @@
 stages:
   - build
+  - release
 
 image: docker:latest
 
@@ -10,19 +11,29 @@ variables:
   DOCKER_REGISTRY: "epicsoft/ci"
 
 before_script:
-  - docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_TOKEN
   - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+  - docker login -u="$DOCKER_HUB_USER" -p="$DOCKER_HUB_TOKEN"
 
 after_script:
-  - docker logout
   - docker logout $CI_REGISTRY
+  - docker logout
 
-Build:
+latest:
   stage: build
   script:
+    - echo "Build CI/CD Docker image"
     - docker build --pull --no-cache -t $CI_REGISTRY_IMAGE:latest . --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
     - docker tag $CI_REGISTRY_IMAGE:latest $DOCKER_REGISTRY:latest
     - docker push $CI_REGISTRY_IMAGE:latest
     - docker push $DOCKER_REGISTRY:latest
-  only:
-    - main
+
+uploadReadme:
+  stage: release
+  script:
+    - docker run --rm -v $PWD:/workspace
+      -e DOCKERHUB_USERNAME=${DOCKER_HUB_USER}
+      -e DOCKERHUB_PASSWORD=${DOCKER_HUB_TOKEN}
+      -e DOCKERHUB_REPOSITORY=${DOCKER_REGISTRY}
+      -e SHORT_DESCRIPTION="A tool collection to run in the CI/CD based on official Alpine image"
+      -e README_FILEPATH='/workspace/README.md'
+        peterevans/dockerhub-description:latest
