@@ -45,7 +45,7 @@ Alpine packages - https://pkgs.alpinelinux.org/packages
 
 - vault - https://www.vaultproject.io/
 
-## Project-License
+## License
 
 MIT License see [LICENSE](https://gitlab.com/epicsoft-networks/ci/blob/main/LICENSE)
 
