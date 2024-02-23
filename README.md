@@ -39,6 +39,7 @@ Alpine packages - https://pkgs.alpinelinux.org/packages
 - rsync
 - sshpass
 - tzdata
+- unzip
 - yq
 
 ### Additionally installed applications

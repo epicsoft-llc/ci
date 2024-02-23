@@ -26,24 +26,25 @@ LABEL image.name="epicsoft_ci_cd" \
       maintainer.copyright="Copyright 2023-2024 epicsoft LLC / Alexander Schwarz" \
       license="MIT"
 
-RUN apk --no-cache add lftp \
+RUN apk --no-cache add aws-cli \
+                       ca-certificates \
+                       curl \
                        gettext \
-                       aws-cli \
+                       git \
+                       helm \
+                       jq \
+                       kubectl \
+                       lftp \
+                       mariadb-client \
+                       mysql-client \
+                       openssh-client-default \
+                       outils-sha256 \
                        p7zip \
                        rsync \
-                       openssh-client-default \
                        sshpass \
                        tzdata \
-                       mysql-client \
-                       mariadb-client \
-                       git \
-                       curl \
-                       jq \
+                       unzip \
                        yq \
-                       helm \
-                       ca-certificates \
-                       outils-sha256 \
-                       kubectl \
  && update-ca-certificates \
  && rm -rf /var/cache/apk/*
 
