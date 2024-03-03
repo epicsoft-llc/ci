@@ -27,6 +27,7 @@ LABEL image.name="epicsoft_ci_cd" \
       license="MIT"
 
 RUN apk --no-cache add aws-cli \
+                       bash \
                        ca-certificates \
                        curl \
                        gettext \

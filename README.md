@@ -24,6 +24,7 @@ There are some tools installed in this image that are often and less often neede
 Alpine packages - https://pkgs.alpinelinux.org/packages
 
 - aws-cli
+- bash
 - curl
 - gettext
 - git
