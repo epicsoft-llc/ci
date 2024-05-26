@@ -26,8 +26,7 @@ LABEL image.name="epicsoft_ci_cd" \
       maintainer.copyright="Copyright 2023-2024 epicsoft LLC / Alexander Schwarz" \
       license="MIT"
 
-RUN apk --no-cache add aws-cli \
-                       bash \
+RUN apk --no-cache add bash \
                        ca-certificates \
                        curl \
                        gettext \
@@ -45,10 +44,13 @@ RUN apk --no-cache add aws-cli \
                        sshpass \
                        tzdata \
                        unzip \
+                       wget \
                        yq \
  && update-ca-certificates \
  && rm -rf /var/cache/apk/*
 
-COPY --from=vault-stage /vault /usr/local/bin/vault
+RUN apk --no-cache add aws-cli --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community \
+ && rm -rf /var/cache/apk/*
 
+COPY --from=vault-stage /vault /usr/local/bin/vault
 RUN chmod 755 /usr/local/bin/vault

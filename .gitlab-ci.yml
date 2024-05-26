@@ -26,6 +26,9 @@ latest:
     - docker tag $CI_REGISTRY_IMAGE:latest $DOCKER_REGISTRY:latest
     - docker push $CI_REGISTRY_IMAGE:latest
     - docker push $DOCKER_REGISTRY:latest
+  retry: 2
+  only:
+    - main
 
 uploadReadme:
   stage: release
@@ -37,3 +40,6 @@ uploadReadme:
       -e SHORT_DESCRIPTION="A tool collection to run in the CI/CD based on official Alpine image"
       -e README_FILEPATH='/workspace/README.md'
         peterevans/dockerhub-description:latest
+  retry: 2
+  only:
+    - main

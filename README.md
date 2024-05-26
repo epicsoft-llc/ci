@@ -23,7 +23,7 @@ There are some tools installed in this image that are often and less often neede
 
 Alpine packages - https://pkgs.alpinelinux.org/packages
 
-- aws-cli
+- aws-cli *(edge repository)*
 - bash
 - curl
 - gettext
@@ -41,6 +41,7 @@ Alpine packages - https://pkgs.alpinelinux.org/packages
 - sshpass
 - tzdata
 - unzip
+- wget
 - yq
 
 ### Additionally installed applications
