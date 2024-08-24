@@ -26,6 +26,8 @@ Alpine packages - https://pkgs.alpinelinux.org/packages
 - aws-cli *(edge repository)*
 - bash
 - curl
+- docker-cli
+- docker-cli-compose
 - gettext
 - git
 - helm

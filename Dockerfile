@@ -29,6 +29,8 @@ LABEL image.name="epicsoft_ci_cd" \
 RUN apk --no-cache add bash \
                        ca-certificates \
                        curl \
+                       docker-cli \
+                       docker-cli-compose \
                        gettext \
                        git \
                        helm \
