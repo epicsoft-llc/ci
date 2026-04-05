@@ -1,5 +1,5 @@
 #### HashiCorp Vault Stage
-FROM alpine:latest as vault-stage
+FROM alpine:latest AS vault-stage
 WORKDIR /
 RUN apk --no-cache add curl wget jq sed unzip
 RUN export LATEST=$(curl -s https://api.github.com/repos/hashicorp/vault/releases/latest | jq -r '.name' | sed 's:v::g') \
@@ -48,10 +48,8 @@ RUN apk --no-cache add bash \
                        unzip \
                        wget \
                        yq \
+                       aws-cli \
  && update-ca-certificates \
- && rm -rf /var/cache/apk/*
-
-RUN apk --no-cache add aws-cli --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community \
  && rm -rf /var/cache/apk/*
 
 COPY --from=vault-stage /vault /usr/local/bin/vault
