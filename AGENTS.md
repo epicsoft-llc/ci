@@ -12,7 +12,7 @@ Hub description and is uploaded by the pipeline, so it is part of the release ar
 |---|---|
 | **Repository** | developed on `gitlab.com/epicsoft-networks/ci` (branch `main`), mirrored to `github.com/epicsoft-llc/ci` |
 | **Registries** | `registry.gitlab.com/epicsoft-networks/ci` and Docker Hub `epicsoft/ci` |
-| **Platforms** | `linux/amd64` (`BUILD_PLATFORMS` in `.gitlab-ci.yml`) |
+| **Platforms** | `linux/amd64` and `linux/arm64` (`BUILD_PLATFORMS` in `.gitlab-ci.yml`) |
 
 The Dockerfile has two stages. `vault-stage` downloads the newest HashiCorp Vault release for `TARGETARCH` and checks it
 against the `SHA256SUMS` file of that release before unpacking — Vault is not in the Alpine packages. The final stage
@@ -39,8 +39,8 @@ A release also moves `latest`. Versioning follows Semantic Versioning; the rules
 Each platform is built, loaded and tested **before** the push, which reuses those layers from the builder cache — a
 broken image never reaches a registry. The test starts every tool of the image; a tool that is added to the Dockerfile
 belongs into that test and into the README list. The `docker:dind` service runs with TLS, which buildx only takes from
-a Docker context — hence `docker context create dind` before `docker buildx create`. A second platform in
-`BUILD_PLATFORMS` needs QEMU (`binfmt_misc`) on the runner host.
+a Docker context — hence `docker context create dind` before `docker buildx create`. Building and testing
+`linux/arm64` on an `amd64` runner needs QEMU (`binfmt_misc`) on the runner host.
 
 CI variables: `DOCKER_HUB_USER`, `DOCKER_HUB_TOKEN`, `GITHUB_TOKEN` (masked, protected — so the tags must be protected
 (`*.*.*`) or the jobs see no token). The tokens go in over stdin and through the environment, never onto a command line.

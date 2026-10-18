@@ -9,7 +9,7 @@ services:
 
 variables:
   DOCKER_REGISTRY: "epicsoft/ci"
-  BUILD_PLATFORMS: "linux/amd64"
+  BUILD_PLATFORMS: "linux/amd64,linux/arm64"
   BUILDX_NO_DEFAULT_ATTESTATIONS: "1"
 
 #### The tokens go in over stdin: '-p' would put them in the process list of the runner.
