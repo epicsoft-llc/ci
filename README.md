@@ -24,14 +24,14 @@ contained versions are listed in the [changelog](https://gitlab.com/epicsoft-net
 | `1.1`, `1` | newest release of that line |
 | `latest` | the `main` branch, rebuilt weekly on `alpine:latest`, also moved by every release |
 
-`1.1.0` contains Vault `2.2.0`, kubectl `1.36.1`, Helm `3.19.0`, AWS CLI `2.34.63`, Docker CLI `29.8.2`, Docker Compose
+`1.1.0` contains Vault `2.2.0`, kubectl `1.36.1`, Helm `3.22.1`, AWS CLI `2.34.63`, Docker CLI `29.8.2`, Docker Compose
 `5.1.4`, git `2.54.0` and Alpine `3.24.2`.
 
 ## Tools
 
 ### From the Alpine packages
 
-Alpine packages - https://pkgs.alpinelinux.org/packages
+Every tool that Alpine maintains comes from the Alpine packages - https://pkgs.alpinelinux.org/packages
 
 - aws-cli
 - bash
@@ -40,7 +40,6 @@ Alpine packages - https://pkgs.alpinelinux.org/packages
 - docker-cli-compose
 - gettext
 - git
-- helm
 - jq
 - kubectl
 - lftp
@@ -58,8 +57,13 @@ Alpine packages - https://pkgs.alpinelinux.org/packages
 
 ### Installed in addition
 
-- vault - https://www.vaultproject.io/ - the newest release from `releases.hashicorp.com`, checked against the SHA-256
-  sums HashiCorp publishes for it
+Only what Alpine does not package or does not keep up to date, each checked against the SHA-256 sums its project
+publishes:
+
+- vault - https://www.vaultproject.io/ - the newest release from `releases.hashicorp.com`; Vault is not in the Alpine
+  packages
+- helm - https://helm.sh/ - the newest Helm 3 from `get.helm.sh`; the Alpine package has stalled at `3.19.0`, and
+  Helm 4 changes commands
 
 ## Example
 

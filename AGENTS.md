@@ -14,9 +14,12 @@ Hub description and is uploaded by the pipeline, so it is part of the release ar
 | **Registries** | `registry.gitlab.com/epicsoft-networks/ci` and Docker Hub `epicsoft/ci` |
 | **Platforms** | `linux/amd64` and `linux/arm64` (`BUILD_PLATFORMS` in `.gitlab-ci.yml`) |
 
-The Dockerfile has two stages. `vault-stage` downloads the newest HashiCorp Vault release for `TARGETARCH` and checks it
-against the `SHA256SUMS` file of that release before unpacking — Vault is not in the Alpine packages. The final stage
-installs everything else from the Alpine packages, after `apk --no-cache upgrade`.
+The Dockerfile has two stages. **Every tool that Alpine maintains comes from the Alpine packages** — installed in the
+final stage after `apk --no-cache upgrade`; a newer version arrives with the next Alpine release. Only what Alpine does
+not package or lets fall behind is downloaded in `download-stage`: the newest release for `TARGETARCH`, checked against
+the SHA-256 sums its project publishes. Today that is Vault (not in the Alpine packages) and Helm (the Alpine package has
+stalled at `3.19.0`; the newest Helm 3 is taken, Helm 4 changes commands). When Alpine maintains such a tool again, it
+goes back to the packages — and a tool whose project publishes no checksums is not downloaded at all.
 
 ## Tags
 

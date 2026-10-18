@@ -18,13 +18,19 @@ release from the entry below. Each release entry names the contained versions of
 
 ### Contents
 
-- Vault `2.2.0`, kubectl `1.36.1`, Helm `3.19.0`, AWS CLI `2.34.63`
+- Vault `2.2.0`, kubectl `1.36.1`, Helm `3.22.1`, AWS CLI `2.34.63`
 - Docker CLI `29.8.2`, Docker Compose `5.1.4`, git `2.54.0`, Alpine `3.24.2`
 
 ### Added
 
 - `linux/arm64` next to `linux/amd64` for every tag. Each platform is built and tested on its own before the push,
   and Vault is the release for the respective platform
+
+### Changed
+
+- Helm comes from its project's releases - the newest Helm 3, checked against the published SHA-256 sum - instead of
+  the Alpine package, which has stalled at `3.19.0` with a security upgrade pending. Helm 4 is left out on purpose: it
+  changes commands. All other tools stay with the Alpine packages, which keep them maintained
 
 ## [1.0.0] - 2026-10-18
 
