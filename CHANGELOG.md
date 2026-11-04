@@ -14,6 +14,22 @@ the versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 release from the entry below. Each release entry names the contained versions of the main tools and Alpine. The weekly
 `latest` builds are not listed here.
 
+## [1.1.1] - 2026-11-03
+
+### Contents
+
+- Vault `2.2.1`, kubectl `1.36.1`, Helm `3.22.1`, AWS CLI `2.34.63`
+- Docker CLI `29.9.2`, Docker Compose `5.6.1`, git `2.54.0`, Alpine `3.24.3`
+
+### Security
+
+- Vault `2.2.1`, built with Go `1.27.3` for CVE-2026-111943
+- curl `8.23.0` with 24 fixes, among them CVE-2026-92392, rated High by curl
+- musl `1.2.6-r3` (CVE-2026-107891), expat `2.10.0` (CVE-2026-113351, CVE-2026-115506, CVE-2026-117610,
+  CVE-2026-118370), brotli `1.2.1` (CVE-2026-111497)
+- The MariaDB client `11.8.9`, Docker CLI `29.9.2` and Docker Compose `5.6.1` with their security fixes; Python
+  `3.14.10`, c-ares `1.34.9`, ca-certificates `20261020` and Alpine `3.24.3`
+
 ## [1.1.0] - 2026-10-18
 
 ### Contents

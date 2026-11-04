@@ -20,12 +20,12 @@ contained versions are listed in the [changelog](https://gitlab.com/epicsoft-net
 
 | Tag | Content |
 |---|---|
-| `1.1.0` | exactly this build - **use this in production** |
+| `1.1.1` | exactly this build - **use this in production** |
 | `1.1`, `1` | newest release of that line |
 | `latest` | the `main` branch, rebuilt weekly on `alpine:latest`, also moved by every release |
 
-`1.1.0` contains Vault `2.2.0`, kubectl `1.36.1`, Helm `3.22.1`, AWS CLI `2.34.63`, Docker CLI `29.8.2`, Docker Compose
-`5.1.4`, git `2.54.0` and Alpine `3.24.2`.
+`1.1.1` contains Vault `2.2.1`, kubectl `1.36.1`, Helm `3.22.1`, AWS CLI `2.34.63`, Docker CLI `29.9.2`, Docker Compose
+`5.6.1`, git `2.54.0` and Alpine `3.24.3`.
 
 ## Tools
 
