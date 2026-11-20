@@ -21,6 +21,11 @@ the SHA-256 sums its project publishes. Today that is Vault (not in the Alpine p
 stalled at `3.19.0`; the newest Helm 3 is taken, Helm 4 changes commands). When Alpine maintains such a tool again, it
 goes back to the packages — and a tool whose project publishes no checksums is not downloaded at all.
 
+Wrangler is the exception to the download stage: it is a Node.js program and needs Node at runtime, so it is installed
+with `npm install --global` in the final stage, on the `nodejs` and `npm` packages of Alpine. npm checks every package
+against the integrity hash of the registry, and `npm audit signatures` verifies the registry signatures — the build
+fails otherwise. `WRANGLER_SEND_METRICS=false` is set in the image.
+
 ## Tags
 
 | Tags | Built from | Content |
@@ -57,7 +62,7 @@ the tag. Changes are never pushed to GitHub directly; the mirror would overwrite
 - `CHANGELOG.md`: `## [X.Y.Z] - <date>` — the tag jobs fail without it, and `github-release` takes the notes from
   exactly that heading.
 - The entry names the contained versions under `### Contents`, read from the image right before tagging:
-  `docker run --rm epicsoft/ci:latest bash -c 'cat /etc/alpine-release; vault version; kubectl version --client; helm version --short; aws --version; docker --version; docker compose version; git --version'`
+  `docker run --rm epicsoft/ci:latest bash -c 'cat /etc/alpine-release; vault version; kubectl version --client; helm version --short; aws --version; docker --version; docker compose version; git --version; node --version; wrangler --version; python3 --version'`
 - `README.md`: the `## Versions` section, and on a new minor or major version the `X.Y` in the example.
 - Tag on `main`, **without `v`**: `X.Y.Z`.
 

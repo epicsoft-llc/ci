@@ -3,7 +3,8 @@
 This Docker image is managed and kept up to date by [epicsoft LLC](https://epicsoft.one).
 
 The tools CI/CD jobs need again and again, in one image on the official [Alpine image](https://hub.docker.com/_/alpine):
-HashiCorp Vault, kubectl, Helm, the AWS CLI, the Docker CLI with Compose, git and more.
+HashiCorp Vault, kubectl, Helm, the AWS CLI, the Docker CLI with Compose, Cloudflare Wrangler with Node.js, Python 3,
+git and more.
 
 * Base image: https://hub.docker.com/_/alpine, platforms `linux/amd64` and `linux/arm64`
 * Dockerfile: https://gitlab.com/epicsoft-networks/ci/-/blob/main/Dockerfile
@@ -45,10 +46,14 @@ Every tool that Alpine maintains comes from the Alpine packages - https://pkgs.a
 - lftp
 - mariadb-client
 - mysql-client
+- nodejs
+- npm
 - openssh-client-default
 - outils-sha256
 - p7zip
+- python3
 - rsync
+- sed (GNU sed)
 - sshpass
 - tzdata
 - unzip
@@ -57,13 +62,15 @@ Every tool that Alpine maintains comes from the Alpine packages - https://pkgs.a
 
 ### Installed in addition
 
-Only what Alpine does not package or does not keep up to date, each checked against the SHA-256 sums its project
-publishes:
+Only what Alpine does not package or does not keep up to date. Vault and Helm are checked against the SHA-256 sums their
+projects publish, Wrangler against the integrity hashes and signatures of the npm registry:
 
 - vault - https://www.vaultproject.io/ - the newest release from `releases.hashicorp.com`; Vault is not in the Alpine
   packages
 - helm - https://helm.sh/ - the newest Helm 3 from `get.helm.sh`; the Alpine package has stalled at `3.19.0`, and
   Helm 4 changes commands
+- wrangler - https://developers.cloudflare.com/workers/wrangler/ - the newest release from npm, verified with
+  `npm audit signatures`; telemetry is off (`WRANGLER_SEND_METRICS=false`)
 
 ## Example
 

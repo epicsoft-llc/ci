@@ -61,10 +61,14 @@ RUN apk --no-cache upgrade \
                        lftp \
                        mariadb-client \
                        mysql-client \
+                       nodejs \
+                       npm \
                        openssh-client-default \
                        outils-sha256 \
                        p7zip \
+                       python3 \
                        rsync \
+                       sed \
                        sshpass \
                        tzdata \
                        unzip \
@@ -76,3 +80,11 @@ RUN apk --no-cache upgrade \
 
 COPY --from=download-stage /usr/local/bin/ /usr/local/bin/
 COPY --from=download-stage /usr/local/share/licenses/ /usr/local/share/licenses/
+
+#### Wrangler is not in the Alpine packages: the newest release from npm, which checks every package against the
+#### integrity hash of the registry - 'npm audit signatures' verifies the registry signatures on top
+ENV WRANGLER_SEND_METRICS=false
+RUN npm install --global wrangler \
+ && cd /usr/local/lib/node_modules/wrangler \
+ && npm audit signatures \
+ && npm cache clean --force

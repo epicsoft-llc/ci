@@ -43,7 +43,8 @@ after_script:
       docker run --rm --platform "${platform}" ci:test bash -c 'set -e; vault version; kubectl version --client; \
         helm version --short; aws --version; docker --version; docker compose version; git --version; jq --version; \
         yq --version; mariadb --version; ssh -V; lftp --version; rsync --version; envsubst --version; 7z > /dev/null; \
-        echo -n test | sha256; sshpass -V; unzip -v > /dev/null; wget --version > /dev/null; curl --version'
+        echo -n test | sha256; sshpass -V; unzip -v > /dev/null; wget --version > /dev/null; curl --version; \
+        node --version; npm --version; wrangler --version; python3 --version; sed --version > /dev/null'
     done
   - docker buildx build . --push --pull --platform ${BUILD_PLATFORMS} ${TAGS}
       --build-arg IMAGE_TAG=${VERSION} --build-arg BUILD_DATE=${BUILD_DATE}
