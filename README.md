@@ -21,12 +21,12 @@ contained versions are listed in the [changelog](https://gitlab.com/epicsoft-net
 
 | Tag | Content |
 |---|---|
-| `1.1.1` | exactly this build - **use this in production** |
-| `1.1`, `1` | newest release of that line |
+| `1.2.0` | exactly this build - **use this in production** |
+| `1.2`, `1` | newest release of that line |
 | `latest` | the `main` branch, rebuilt weekly on `alpine:latest`, also moved by every release |
 
-`1.1.1` contains Vault `2.2.1`, kubectl `1.36.1`, Helm `3.22.1`, AWS CLI `2.34.63`, Docker CLI `29.9.2`, Docker Compose
-`5.6.1`, git `2.54.0` and Alpine `3.24.3`.
+`1.2.0` contains Vault `2.2.2`, kubectl `1.36.1`, Helm `3.22.1`, AWS CLI `2.34.63`, Docker CLI `29.9.3`, Docker Compose
+`5.7.2`, git `2.54.1`, Node.js `24.22.3`, Wrangler `4.165.0`, Python `3.14.10` and Alpine `3.24.4`.
 
 ## Tools
 
@@ -78,10 +78,11 @@ projects publish, Wrangler against the integrity hashes and signatures of the np
 
 ```yml
 deploy:
-  image: epicsoft/ci:1.1
+  image: epicsoft/ci:1.2
   script:
     - kubectl version --client
     - helm version --short
+    - wrangler pages deploy public --project-name=my-site --branch=main
 ```
 
 ## Reporting problems

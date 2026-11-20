@@ -14,6 +14,21 @@ the versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 release from the entry below. Each release entry names the contained versions of the main tools and Alpine. The weekly
 `latest` builds are not listed here.
 
+## [1.2.0] - 2026-11-20
+
+### Contents
+
+- Vault `2.2.2`, kubectl `1.36.1`, Helm `3.22.1`, AWS CLI `2.34.63`
+- Docker CLI `29.9.3`, Docker Compose `5.7.2`, git `2.54.1`, Alpine `3.24.4`
+- Node.js `24.22.3`, npm `11.12.1`, Wrangler `4.165.0`, Python `3.14.10`, GNU sed `4.9`
+
+### Added
+
+- Cloudflare Wrangler for deployments to Cloudflare Workers and Pages - the newest release from npm, verified with
+  `npm audit signatures`; telemetry is off (`WRANGLER_SEND_METRICS=false`)
+- Node.js and npm from the Alpine packages, which Wrangler runs on
+- Python 3 and GNU sed from the Alpine packages; GNU sed replaces the BusyBox `sed` and brings options such as `-z`
+
 ## [1.1.1] - 2026-11-03
 
 ### Contents
